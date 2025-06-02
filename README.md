@@ -61,7 +61,7 @@ algovisualizer/
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/your_username/algovisualizer/issues).
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/playboi007/algovisualizer/issues).
 
 1.  Fork the Project
 2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
@@ -81,3 +81,48 @@ Distributed under the MIT License. See `LICENSE` for more information. (You'll n
 ---
 
 Happy Visualizing! ✨ 
+
+graph TD
+    User([User]) --> S[Screens];
+    MArt(main.dart) --> S;
+
+    S -- Reads State/Dispatches Actions --> P[Providers];
+    P -- Manages State & Controls --> A[Algorithms];
+    P -- Optionally Uses --> SV[Services];
+    SV -- May Coordinate --> A;
+    A -- Manipulates/Updates --> M[Models];
+    M -- Data For --> A;
+    P -- Observes/Gets Data From --> M;
+    S -- Renders Based On State From --> P;
+
+    classDef entryPoint fill:#cde4ff,stroke:#4078c0,stroke-width:2px;
+    classDef ui fill:#CBF3F0,stroke:#2EC4B6,stroke-width:2px;
+    classDef state fill:#E0FFD1,stroke:#70A02C,stroke-width:2px;
+    classDef logic fill:#FFDDAA,stroke:#FFA500,stroke-width:2px;
+    classDef data fill:#FFFACD,stroke:#FFD700,stroke-width:2px;
+    classDef service fill:#FFDFD3,stroke:#FF8C69,stroke-width:2px;
+
+    class User entryPoint;
+    class MArt entryPoint;
+    class S ui;
+    class P state;
+    class A logic;
+    class M data;
+    class SV service;
+
+    subgraph AppStructure
+        direction LR
+        subgraph "UI Layer (`screens/`)"
+            S
+        end
+        subgraph "State Management (`providers/`)"
+            P
+        end
+        subgraph "Business & Algorithm Logic"
+            SV("`services/`")
+            A("`algorithms/`")
+        end
+        subgraph "Data Layer (`models/`)"
+            M
+        end
+    end 
